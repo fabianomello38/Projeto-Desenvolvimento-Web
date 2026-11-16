@@ -1,0 +1,516 @@
+/* ==========================================================================
+   THE CLOSET — Projeto Final da Disciplina (Desenvolvimento Web p/ Dispositivos Móveis)
+   Abordagem MOBILE-FIRST: estilos base = celular; media queries com min-width
+   Breakpoints definidos pelo CONTEÚDO (não por aparelho):
+     36em (~576px) -> cards de produto cabem 2 por linha sem cortar preço/botão
+     52em (~832px) -> menu horizontal cabe inteiro na barra; vitrine em 3 colunas
+     72em (~1152px)-> vitrine em 4 colunas; conteúdo limitado a 75rem
+   Sumário: 1.Variáveis 2.Reset 3.Tipografia 4.Layout/grid fluido 5.Cabeçalho/Menu
+            6.Hero/Carousel 7.Vitrine 8.Galeria 9.Accordion 10.Formulário
+            11.Rodapé 12.Animações 13.Media queries
+   ========================================================================== */
+
+/* 1. Variáveis ------------------------------------------------------------ */
+:root {
+  --cor-texto: #1d1d1f;
+  --cor-fundo: #faf8f5;
+  --cor-superficie: #ffffff;
+  --cor-destaque: #b5485d;
+  --cor-destaque-escura: #8e3346;
+  --cor-secundaria: #2b3a55;
+  --cor-borda: #e4ded6;
+  --cor-erro: #c0392b;
+  --cor-sucesso: #2e7d4f;
+  --fonte-titulo: "Playfair Display", Georgia, serif;
+  --fonte-texto: "Inter", "Segoe UI", Arial, sans-serif;
+  --raio: 0.5rem;
+  --sombra: 0 0.25rem 1rem rgba(29, 29, 31, 0.08);
+  --sombra-forte: 0 0.75rem 2rem rgba(29, 29, 31, 0.18);
+  --transicao: 0.3s ease;
+  --largura-max: 75rem;
+}
+
+/* 2. Reset ---------------------------------------------------------------- */
+*,
+*::before,
+*::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+img, video, iframe { display: block; max-width: 100%; height: auto; }
+
+ul[role="list"], .lista-limpa { list-style: none; }
+
+a { color: inherit; }
+
+button, input, select, textarea { font: inherit; }
+
+/* 3. Tipografia ----------------------------------------------------------- */
+body {
+  font-family: var(--fonte-texto);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--cor-texto);
+  background-color: var(--cor-fundo);
+}
+
+h1, h2, h3 {
+  font-family: var(--fonte-titulo);
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+h1 { font-size: clamp(1.75rem, 6vw, 3.25rem); }
+h2 { font-size: clamp(1.5rem, 4.5vw, 2.25rem); margin-bottom: 1rem; }
+h3 { font-size: 1.15rem; }
+
+.titulo-sombra { text-shadow: 0.125rem 0.125rem 0.5rem rgba(0, 0, 0, 0.45); }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+.pular-link {
+  position: absolute; left: -999em; top: 0;
+  background: var(--cor-texto); color: #fff; padding: 0.5rem 1rem; z-index: 100;
+}
+.pular-link:focus { left: 0; }
+
+/* 4. Layout / grid fluido ------------------------------------------------- */
+.container {
+  width: 92%;                 /* fluid grid: largura relativa */
+  max-width: var(--largura-max);
+  margin-inline: auto;
+}
+
+.secao { padding-block: 3rem; }
+
+.secao--alternada { background-color: var(--cor-superficie); }
+
+.cabecalho-pagina {
+  padding-block: 2.5rem;
+  text-align: center;
+  color: #fff;
+  /* múltiplos backgrounds: gradiente sobre imagem */
+  background:
+    linear-gradient(135deg, rgba(43, 58, 85, 0.88), rgba(181, 72, 93, 0.75)),
+    url("../img/banner-1.svg") center / cover no-repeat;
+}
+.cabecalho-pagina p { max-width: 40rem; margin: 0.5rem auto 0; }
+
+.breadcrumb { font-size: 0.875rem; margin-bottom: 0.5rem; }
+.breadcrumb ol { display: flex; justify-content: center; gap: 0.5rem; list-style: none; }
+.breadcrumb li + li::before { content: "/"; margin-right: 0.5rem; opacity: 0.7; }
+
+.botao {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border: 0.125rem solid transparent;
+  border-radius: 2rem;
+  background-color: var(--cor-destaque);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--transicao), transform var(--transicao);
+}
+.botao:hover,
+.botao:focus-visible { background-color: var(--cor-destaque-escura); transform: translateY(-0.125rem); }
+
+.botao--contorno { background: transparent; border-color: currentColor; color: inherit; }
+.botao--contorno:hover { background-color: var(--cor-texto); color: #fff; }
+
+/* 5. Cabeçalho / menu responsivo ----------------------------------------- */
+.topo {
+  position: sticky; top: 0; z-index: 50;
+  background-color: rgba(250, 248, 245, 0.96);
+  box-shadow: var(--sombra);
+}
+
+.topo__barra {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;          /* no celular o menu desce para a linha de baixo */
+  gap: 0 1rem;
+  padding-block: 0.75rem;
+}
+
+.logo {
+  font-family: var(--fonte-titulo);
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+}
+.logo span { color: var(--cor-destaque); }
+
+.topo__acoes { display: flex; align-items: center; gap: 0.75rem; }
+
+.carrinho {
+  position: relative;
+  background: none; border: 0; cursor: pointer; font-size: 1.4rem;
+}
+.carrinho__contador {
+  position: absolute; top: -0.4rem; right: -0.6rem;
+  min-width: 1.25rem; padding: 0 0.3rem;
+  border-radius: 1rem;
+  background: var(--cor-destaque); color: #fff;
+  font-size: 0.7rem; font-weight: 700; text-align: center;
+}
+.carrinho__contador.pulsar { animation: pulsar 0.5s ease; }
+
+.menu-toggle {
+  display: flex; flex-direction: column; justify-content: center; gap: 0.3rem;
+  width: 2.75rem; height: 2.75rem;
+  background: none; border: 0; cursor: pointer;
+}
+.menu-toggle span {
+  display: block; height: 0.1875rem; width: 1.6rem; margin-inline: auto;
+  background: var(--cor-texto); border-radius: 1rem;
+  transition: transform var(--transicao), opacity var(--transicao);
+}
+.menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(0.4875rem) rotate(45deg); }
+.menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-0.4875rem) rotate(-45deg); }
+
+.menu {
+  order: 3;
+  flex-basis: 100%;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+.menu.aberto { max-height: 30rem; }
+
+.menu ul { list-style: none; padding-bottom: 1rem; }
+
+.menu a {
+  display: block;
+  padding: 0.75rem 0.25rem;
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+/* seletor complexo: link da página atual dentro do menu */
+.menu li > a[aria-current="page"] { color: var(--cor-destaque); font-weight: 700; }
+
+/* 6. Hero / carousel ----------------------------------------------------- */
+.hero { position: relative; }
+
+.hero__slide { position: relative; }
+.hero__slide img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+
+.hero__texto {
+  position: absolute; inset: auto 0 0 0;
+  padding: 1.5rem 4%;
+  color: #fff;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+}
+.hero__texto p { margin-block: 0.5rem 1rem; }
+.hero__texto .botao { align-self: flex-start; }
+
+/* fallback sem JavaScript: mostra só o 1º slide e os produtos em grade */
+.hero__slides:not(.slick-initialized) .hero__slide + .hero__slide { display: none; }
+.carousel-produtos:not(.slick-initialized) { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+.carousel-produtos .produto { margin-inline: 0.5rem; }
+
+/* ajustes visuais do plugin Slick */
+.slick-dots { bottom: 0.5rem; }
+.slick-dots li button::before { color: #fff; font-size: 0.75rem; }
+.slick-prev, .slick-next { z-index: 5; }
+.slick-prev { left: 0.75rem; }
+.slick-next { right: 0.75rem; }
+
+/* faixa de benefícios */
+.beneficios {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem;
+  text-align: center;
+}
+.beneficio {
+  padding: 1.25rem;
+  border-radius: var(--raio);
+  background: var(--cor-superficie);
+  box-shadow: var(--sombra);
+}
+.beneficio__icone { font-size: 2rem; }
+
+/* categorias (cards com flexbox) */
+.categorias {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.categoria {
+  position: relative;
+  flex: 1 1 100%;
+  border-radius: var(--raio);
+  overflow: hidden;
+  color: #fff;
+  text-decoration: none;
+}
+.categoria img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform 0.6s ease; }
+.categoria:hover img { transform: scale(1.08); }
+.categoria h3 {
+  position: absolute; left: 1rem; bottom: 1rem;
+  font-size: 1.5rem;
+  text-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.6);
+}
+
+/* 7. Vitrine de produtos ------------------------------------------------- */
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+.filtros label { font-weight: 600; margin-right: 0.5rem; }
+.filtros select {
+  padding: 0.5rem; border: 1px solid var(--cor-borda); border-radius: var(--raio);
+}
+
+.vitrine {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+.produto {
+  display: flex;
+  flex-direction: column;
+  background: var(--cor-superficie);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  overflow: hidden;
+  transition: transform var(--transicao), box-shadow var(--transicao);
+}
+.produto:hover { transform: translateY(-0.25rem); box-shadow: var(--sombra-forte); }
+
+.produto__imagem { position: relative; }
+.produto__imagem img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+
+.selo {
+  position: absolute; top: 0.75rem; left: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 1rem;
+  background: var(--cor-destaque); color: #fff;
+  font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+}
+
+.produto__info { display: flex; flex-direction: column; gap: 0.35rem; padding: 1rem; flex: 1; }
+.produto__preco { font-size: 1.2rem; font-weight: 700; color: var(--cor-secundaria); }
+.produto__preco del { font-size: 0.9rem; font-weight: 400; color: #888; margin-right: 0.4rem; }
+.produto__info .botao { margin-top: auto; text-align: center; }
+
+.produto.oculto { display: none; }
+
+/* 8. Galeria (lookbook) -------------------------------------------------- */
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+.galeria a { display: block; overflow: hidden; border-radius: var(--raio); }
+.galeria img { aspect-ratio: 1; object-fit: cover; transition: transform 0.5s ease, filter 0.5s ease; }
+.galeria a:hover img { transform: scale(1.1) rotate(1deg); filter: saturate(1.3); }
+
+/* lightbox simples (funcionalidade JS própria) */
+.lightbox {
+  position: fixed; inset: 0; z-index: 200;
+  display: none; align-items: center; justify-content: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.88);
+}
+.lightbox.ativo { display: flex; animation: aparecer 0.3s ease; }
+.lightbox img { max-height: 85vh; border-radius: var(--raio); box-shadow: var(--sombra-forte); }
+.lightbox__fechar {
+  position: absolute; top: 1rem; right: 1rem;
+  background: none; border: 0; color: #fff; font-size: 2rem; cursor: pointer;
+}
+
+/* vídeo e áudio */
+.midia { display: grid; gap: 1.5rem; }
+.midia video, .midia audio { width: 100%; border-radius: var(--raio); }
+
+/* 9. Accordion (FAQ) ---------------------------------------------------- */
+.accordion__item { border-bottom: 1px solid var(--cor-borda); }
+.accordion__botao {
+  display: flex; justify-content: space-between; align-items: center;
+  width: 100%;
+  padding: 1rem 0;
+  background: none; border: 0;
+  text-align: left; font-weight: 600; cursor: pointer;
+}
+.accordion__botao::after { content: "+"; font-size: 1.4rem; transition: transform var(--transicao); }
+.accordion__botao[aria-expanded="true"]::after { transform: rotate(45deg); }
+.accordion__painel { display: none; padding-bottom: 1rem; }
+
+/* tabela de medidas (dados tabulares — uso semântico, não de layout) */
+.tabela-medidas { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.tabela-medidas th, .tabela-medidas td { padding: 0.5rem; border: 1px solid var(--cor-borda); text-align: center; }
+.tabela-medidas thead { background: var(--cor-secundaria); color: #fff; }
+.tabela-rolagem { overflow-x: auto; }
+
+/* 10. Formulário -------------------------------------------------------- */
+.formulario {
+  display: grid;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: var(--cor-superficie);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+}
+.formulario fieldset { border: 1px solid var(--cor-borda); border-radius: var(--raio); padding: 1rem; }
+.formulario legend { padding: 0 0.5rem; font-weight: 600; }
+
+.campo { display: flex; flex-direction: column; gap: 0.3rem; }
+.campo label { font-weight: 600; font-size: 0.95rem; }
+
+.campo input,
+.campo select,
+.campo textarea {
+  padding: 0.7rem;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  background: #fff;
+  transition: border-color var(--transicao), box-shadow var(--transicao);
+}
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+  outline: none;
+  border-color: var(--cor-secundaria);
+  box-shadow: 0 0 0 0.2rem rgba(43, 58, 85, 0.2);
+}
+
+.campo.erro input,
+.campo.erro select,
+.campo.erro textarea { border-color: var(--cor-erro); }
+.campo.ok input,
+.campo.ok select,
+.campo.ok textarea { border-color: var(--cor-sucesso); }
+
+.mensagem-erro { min-height: 1.2em; color: var(--cor-erro); font-size: 0.85rem; }
+
+.opcoes { display: flex; flex-wrap: wrap; gap: 1rem; }
+.opcoes label { font-weight: 400; display: flex; align-items: center; gap: 0.35rem; }
+
+.alerta-sucesso {
+  display: none;
+  padding: 1rem;
+  border-radius: var(--raio);
+  background: #e6f4ea;
+  color: var(--cor-sucesso);
+  font-weight: 600;
+}
+
+/* mapa / contato */
+.contato-grid { display: grid; gap: 2rem; }
+.mapa iframe { width: 100%; aspect-ratio: 4 / 3; border: 0; border-radius: var(--raio); }
+
+/* sobre: equipe */
+.equipe { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 1.25rem; }
+.membro { text-align: center; padding: 1.5rem; background: var(--cor-superficie); border-radius: var(--raio); box-shadow: var(--sombra); }
+.membro img { width: 7rem; height: 7rem; margin: 0 auto 0.75rem; border-radius: 50%; object-fit: cover; border: 0.25rem solid var(--cor-borda); }
+
+/* newsletter com gradiente */
+.newsletter {
+  color: #fff;
+  text-align: center;
+  background: linear-gradient(120deg, var(--cor-secundaria), var(--cor-destaque));
+}
+.newsletter form { display: flex; flex-direction: column; gap: 0.75rem; max-width: 30rem; margin: 1rem auto 0; }
+.newsletter input { padding: 0.75rem; border: 0; border-radius: 2rem; }
+
+/* 11. Rodapé ------------------------------------------------------------ */
+.rodape { padding-block: 2.5rem 1.5rem; background: var(--cor-texto); color: #ddd; }
+.rodape__colunas { display: grid; gap: 2rem; }
+.rodape h2 { font-size: 1.1rem; color: #fff; }
+.rodape ul { list-style: none; }
+.rodape a { text-decoration: none; }
+.rodape a:hover { color: #fff; text-decoration: underline; }
+.rodape__copy { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #444; font-size: 0.85rem; text-align: center; }
+
+/* botão voltar ao topo */
+.voltar-topo {
+  position: fixed; right: 1rem; bottom: 1rem; z-index: 40;
+  width: 3rem; height: 3rem;
+  border: 0; border-radius: 50%;
+  background: var(--cor-destaque); color: #fff; font-size: 1.25rem;
+  box-shadow: var(--sombra-forte);
+  cursor: pointer;
+  opacity: 0; visibility: hidden;
+  transition: opacity var(--transicao), visibility var(--transicao);
+}
+.voltar-topo.visivel { opacity: 1; visibility: visible; }
+
+/* 12. Animações (keyframes) -------------------------------------------- */
+@keyframes aparecer {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes subir {
+  from { opacity: 0; transform: translateY(1.5rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulsar {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+}
+
+.animar { animation: subir 0.7s ease both; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* 13. Media queries (mobile-first, min-width) -------------------------- */
+
+/* 36em: dois cards de produto cabem lado a lado sem cortar preço/botão */
+@media (min-width: 36em) {
+  .vitrine { grid-template-columns: repeat(2, 1fr); }
+  .categoria { flex: 1 1 calc(50% - 0.5rem); }
+  .galeria { grid-template-columns: repeat(3, 1fr); }
+  .newsletter form { flex-direction: row; }
+  .newsletter input { flex: 1; }
+  .rodape__colunas { grid-template-columns: repeat(2, 1fr); }
+  .formulario .linha { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+}
+
+/* 52em: o menu completo cabe na barra -> menu horizontal */
+@media (min-width: 52em) {
+  .menu-toggle { display: none; }
+
+  .topo__barra { flex-wrap: nowrap; }
+
+  .menu { flex-basis: auto; max-height: none; overflow: visible; order: 2; }
+  .menu ul { display: flex; gap: 1.25rem; padding-bottom: 0; }
+  .menu a { padding: 0.25rem 0; border-bottom: 0.125rem solid transparent; }
+  .menu a:hover,
+  .menu a:focus-visible { border-bottom-color: var(--cor-destaque); }
+
+  .topo__acoes { order: 3; }
+
+  .vitrine { grid-template-columns: repeat(3, 1fr); }
+  .categoria { flex: 1 1 calc(33.333% - 0.75rem); }
+  .galeria { grid-template-columns: repeat(4, 1fr); }
+  /* galeria em mosaico: primeiro item ocupa 2x2 */
+  .galeria a:first-child { grid-column: span 2; grid-row: span 2; }
+  .hero__slide img { aspect-ratio: 16 / 7; }
+  .hero__texto { inset: 0 auto 0 0; max-width: 32rem; display: flex; flex-direction: column; justify-content: center; padding-left: 6%; background: linear-gradient(to right, rgba(0, 0, 0, 0.65), transparent); }
+  .contato-grid { grid-template-columns: 3fr 2fr; }
+  .midia { grid-template-columns: 2fr 1fr; align-items: center; }
+  .rodape__colunas { grid-template-columns: 2fr 1fr 1fr 1fr; }
+}
+
+/* 72em: tela larga -> vitrine em 4 colunas */
+@media (min-width: 72em) {
+  .vitrine { grid-template-columns: repeat(4, 1fr); }
+  .secao { padding-block: 4.5rem; }
+}

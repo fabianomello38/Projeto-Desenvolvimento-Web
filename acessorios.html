@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Relógios, cintos, carteiras, óculos e bonés masculinos.">
+  <title>Acessórios | The Closet</title>
+
+  <!-- Otimização: preconnect aos domínios externos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
+  <!-- Fontes externas (Google Fonts) com display=swap -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:wght@700&amp;display=swap">
+
+  <!-- Plugin 1: Slick Carousel (CSS) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+
+  <!-- Estilos do site (em produção usar css/style.min.css) -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+</head>
+<body>
+  <a class="pular-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="topo">
+    <div class="container topo__barra">
+      <a class="logo" href="index.html"><span>The</span> Closet</a>
+
+      <nav class="menu" id="menu-principal" aria-label="Menu principal">
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="masculino.html">Masculino</a></li>
+            <li><a href="acessorios.html" aria-current="page">Acessórios</a></li>
+            <li><a href="calcados.html">Calçados</a></li>
+            <li><a href="perfumes.html">Perfumes</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </nav>
+
+      <div class="topo__acoes">
+        <button class="carrinho" type="button" aria-label="Carrinho de compras">
+          <span aria-hidden="true">🛍</span>
+          <span class="carrinho__contador">0</span>
+        </button>
+        <button class="menu-toggle" type="button" aria-controls="menu-principal" aria-expanded="false" aria-label="Abrir menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <header class="cabecalho-pagina">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Você está em">
+          <ol>
+            <li><a href="index.html">Início</a></li>
+            <li aria-current="page">Acessórios</li>
+          </ol>
+        </nav>
+        <h1 class="titulo-sombra">Acessórios Masculinos</h1>
+        <p>Relógios, cintos, carteiras, óculos e bonés para completar o visual.</p>
+      </div>
+    </header>
+
+    <section class="secao" aria-labelledby="titulo-vitrine">
+      <div class="container">
+        <h2 id="titulo-vitrine">Produtos</h2>
+      <div class="filtros">
+        <div>
+          <label for="filtro-categoria">Categoria</label>
+          <select id="filtro-categoria" name="filtro-categoria">
+            <option value="todos">Todos</option>
+            <option value="relogios">Relógios</option>
+            <option value="couro">Cintos e carteiras</option>
+            <option value="oculos">Óculos</option>
+            <option value="chapeus">Bonés e chapéus</option>
+          </select>
+        </div>
+        <div>
+          <label for="ordenar">Ordenar</label>
+          <select id="ordenar" name="ordenar">
+            <option value="padrao">Relevância</option>
+            <option value="menor">Menor preço</option>
+            <option value="maior">Maior preço</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="vitrine">
+        <article class="produto" data-categoria="relogios" data-preco="399.90">
+          <figure class="produto__imagem">
+            <img src="img/acess-1.svg" alt="Relógio analógico aço" width="600" height="750" loading="lazy" decoding="async">
+            <span class="selo">-13%</span>
+          </figure>
+          <div class="produto__info">
+            <h3>Relógio analógico aço</h3>
+            <p class="produto__preco"><del>R$ 459,90</del>R$ 399,90</p>
+            <p>ou 3x sem juros</p>
+            <button class="botao adicionar-carrinho" type="button">Adicionar ao carrinho</button>
+          </div>
+        </article>
+        <article class="produto" data-categoria="relogios" data-preco="249.90">
+          <figure class="produto__imagem">
+            <img src="img/acess-2.svg" alt="Relógio digital esportivo" width="600" height="750" loading="lazy" decoding="async">
+            <span class="selo">Novo</span>
+          </figure>
+          <div class="produto__info">
+            <h3>Relógio digital esportivo</h3>
+            <p class="produto__preco">R$ 249,90</p>
+            <p>ou 3x sem juros</p>
+            <button class="botao adicionar-carrinho" type="button">Adicionar ao carrinho</button>
+          </div>
+        </article>
+        <article class="produto" data-categoria="couro" data-preco="129.90">
+          <figure class="produto__imagem">
+            <img src="img/acess-3.svg" alt="Cinto de couro reversível" width="600" height="750" loading="lazy" decoding="async">
+          </figure>
+          <div class="produto__info">
+            <h3>Cinto de couro reversível</h3>
+            <p class="produto__preco">R$ 129,90</p>
+            <p>ou 3x sem juros</p>
+            <button class="botao adicionar-carrinho" type="button">Adicionar ao carrinho</button>
+          </div>
+        </article>
+        <article class="produto" data-categoria="couro" data-preco="99.90">
+          <figure class="produto__imagem">
+            <img src="img/acess-4.svg" alt="Carteira slim couro" width="600" height="750" loading="lazy" decoding="async">
+          </figure>
+          <div class="produto__info">
+            <h3>Carteira slim couro</h3>
+            <p class="produto__preco">R$ 99,90</p>
+            <p>ou 3x sem juros</p>
+            <button class="botao adicionar-carrinho" type="button">Adicionar ao carrinho</button>
+          </div>
+        </article>
+        <article class="produto" data-categoria="oculos" data-preco="289.90">
+          <figure class="produto__imagem">
+            <img src="img/acess-5.svg" alt="Óculos de sol aviador" width="600" height="750" loading="lazy" decoding="async">
+            <span class="selo">-15%</span>
+          </figure>
+          <div class="produto__info">
+            <h3>Óculos de sol aviador</h3>
+            <p class="produto__preco"><del>R$ 339,90</del>R$ 289,90</p>
+            <p>ou 3x sem juros</p>
+            <button class="botao adicionar-carrinho" type="button">Adicionar ao carrinho</button>
+          </div>
+        </article>
+        <article class="produto" data-categoria="chapeus" data-preco="79.90">
+          <figure class="produto__imagem">
+            <img src="img/acess-6.svg" alt="Boné aba curva" width="600" height="750" loading="lazy" decoding="async">
+          </figure>
+          <div class="produto__info">
+            <h3>Boné aba curva</h3>
+            <p class="produto__preco">R$ 79,90</p>
+            <p>ou 3x sem juros</p>
+            <button class="botao adicionar-carrinho" type="button">Adicionar ao carrinho</button>
+          </div>
+        </article>
+      </div>
+      </div>
+    </section>
+    <section class="secao secao--alternada" aria-labelledby="titulo-guia-acess">
+      <div class="container">
+        <h2 id="titulo-guia-acess">Guia de acessórios</h2>
+      <div class="accordion" id="acc-acessorios">
+        <div class="accordion__item">
+          <h3>
+            <button class="accordion__botao" type="button" aria-expanded="false" aria-controls="acc-acessorios-painel-1">Como escolher o tamanho do cinto?</button>
+          </h3>
+          <div class="accordion__painel" id="acc-acessorios-painel-1">
+            <p>Some 5 cm ao número da sua calça. Exemplo: calça 42 pede cinto 47 (ou tamanho M).</p>
+          </div>
+        </div>
+        <div class="accordion__item">
+          <h3>
+            <button class="accordion__botao" type="button" aria-expanded="false" aria-controls="acc-acessorios-painel-2">Relógio: pulseira de aço, couro ou silicone?</button>
+          </h3>
+          <div class="accordion__painel" id="acc-acessorios-painel-2">
+            <p>Aço combina com trajes sociais, couro com o dia a dia e silicone com esportes e atividades ao ar livre.</p>
+          </div>
+        </div>
+        <div class="accordion__item">
+          <h3>
+            <button class="accordion__botao" type="button" aria-expanded="false" aria-controls="acc-acessorios-painel-3">Os óculos de sol têm proteção UV?</button>
+          </h3>
+          <div class="accordion__painel" id="acc-acessorios-painel-3">
+            <p>Sim. Todas as lentes da loja têm proteção UV400 e acompanham estojo e flanela.</p>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+  </main>
+
+  <section class="secao newsletter" aria-labelledby="titulo-news">
+    <div class="container">
+      <h2 id="titulo-news" class="titulo-sombra">Receba ofertas exclusivas</h2>
+      <p>Cadastre seu e-mail e ganhe 10% de desconto na primeira compra.</p>
+      <form action="#" method="post">
+        <label class="sr-only" for="email-news">Seu e-mail</label>
+        <input type="email" id="email-news" name="email-news" placeholder="seu@email.com" required>
+        <button class="botao botao--contorno" type="submit">Quero receber</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="rodape">
+    <div class="container">
+      <div class="rodape__colunas">
+        <section>
+          <h2>The Closet</h2>
+          <p>Moda masculina, acessórios, calçados e perfumes em um só lugar.</p>
+        </section>
+        <nav aria-label="Departamentos">
+          <h2>Departamentos</h2>
+          <ul>
+            <li><a href="masculino.html">Masculino</a></li>
+            <li><a href="acessorios.html">Acessórios</a></li>
+            <li><a href="calcados.html">Calçados</a></li>
+            <li><a href="perfumes.html">Perfumes</a></li>
+          </ul>
+        </nav>
+        <nav aria-label="Institucional">
+          <h2>Institucional</h2>
+          <ul>
+            <li><a href="sobre.html">Sobre nós</a></li>
+            <li><a href="contato.html">Contato</a></li>
+            <li><a href="contato.html#faq">Trocas e devoluções</a></li>
+          </ul>
+        </nav>
+        <section>
+          <h2>Atendimento</h2>
+          <address>
+            <a href="tel:+555130000000">(51) 3000-0000</a><br>
+            <a href="mailto:contato@thecloset.com.br">contato@thecloset.com.br</a><br>
+            Seg. a sáb., 9h às 20h
+          </address>
+        </section>
+      </div>
+      <p class="rodape__copy">
+        &copy; <span class="ano-atual">2026</span> The Closet — Projeto acadêmico, loja fictícia.
+        Créditos de imagens e textos no arquivo <code>docs/CREDITOS.md</code>.
+      </p>
+    </div>
+  </footer>
+
+  <button class="voltar-topo" type="button" aria-label="Voltar ao topo">↑</button>
+
+  <!-- Otimização: scripts no fim e com defer (não bloqueiam a renderização) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

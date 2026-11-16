@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Loja online de moda masculina: roupas, acessórios, calçados e perfumes.">
+  <title>Início | The Closet</title>
+
+  <!-- Otimização: preconnect aos domínios externos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
+  <!-- Fontes externas (Google Fonts) com display=swap -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:wght@700&amp;display=swap">
+
+  <!-- Plugin 1: Slick Carousel (CSS) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+
+  <!-- Estilos do site (em produção usar css/style.min.css) -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+</head>
+<body>
+  <a class="pular-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="topo">
+    <div class="container topo__barra">
+      <a class="logo" href="index.html"><span>The</span> Closet</a>
+
+      <nav class="menu" id="menu-principal" aria-label="Menu principal">
+        <ul>
+            <li><a href="index.html" aria-current="page">Início</a></li>
+            <li><a href="masculino.html">Masculino</a></li>
+            <li><a href="acessorios.html">Acessórios</a></li>
+            <li><a href="calcados.html">Calçados</a></li>
+            <li><a href="perfumes.html">Perfumes</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </nav>
+
+      <div class="topo__acoes">
+        <button class="carrinho" type="button" aria-label="Carrinho de compras">
+          <span aria-hidden="true">🛍</span>
+          <span class="carrinho__contador">0</span>
+        </button>
+        <button class="menu-toggle" type="button" aria-controls="menu-principal" aria-expanded="false" aria-label="Abrir menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <h1 class="sr-only">The Closet — Moda, calçados e perfumes</h1>
+
+    <section class="hero" aria-label="Destaques da loja">
+      <div class="hero__slides">
+        <div class="hero__slide">
+          <img src="img/banner-1.svg" alt="Relógio e carteira de couro sobre mesa de madeira" width="1600" height="700" fetchpriority="high">
+          <div class="hero__texto">
+            <h2 class="titulo-sombra">Nova linha de acessórios</h2>
+            <p>Relógios, cintos e óculos para completar o visual.</p>
+            <a class="botao" href="acessorios.html">Ver acessórios</a>
+          </div>
+        </div>
+        <div class="hero__slide">
+          <img src="img/banner-2.svg" alt="Vitrine de tênis e botas em promoção" width="1600" height="700" loading="lazy">
+          <div class="hero__texto">
+            <h2 class="titulo-sombra">Até 40% OFF em calçados</h2>
+            <p>Tênis, botas e sandálias com preços especiais.</p>
+            <a class="botao" href="calcados.html">Aproveitar</a>
+          </div>
+        </div>
+        <div class="hero__slide">
+          <img src="img/banner-3.svg" alt="Frascos de perfume sobre fundo escuro" width="1600" height="700" loading="lazy">
+          <div class="hero__texto">
+            <h2 class="titulo-sombra">Perfumes para presentear</h2>
+            <p>Fragrâncias marcantes a partir de R$ 149,90.</p>
+            <a class="botao" href="perfumes.html">Escolher perfume</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao" aria-labelledby="titulo-beneficios">
+      <div class="container">
+        <h2 id="titulo-beneficios" class="sr-only">Vantagens de comprar conosco</h2>
+        <ul class="beneficios lista-limpa">
+          <li class="beneficio animar"><span class="beneficio__icone" aria-hidden="true">🚚</span><h3>Frete grátis</h3><p>Compras acima de R$ 299 para todo o Brasil.</p></li>
+          <li class="beneficio animar"><span class="beneficio__icone" aria-hidden="true">🔄</span><h3>Troca fácil</h3><p>Primeira troca grátis em até 30 dias.</p></li>
+          <li class="beneficio animar"><span class="beneficio__icone" aria-hidden="true">💳</span><h3>Parcele em 6x</h3><p>Sem juros no cartão de crédito.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="secao secao--alternada" aria-labelledby="titulo-categorias">
+      <div class="container">
+        <h2 id="titulo-categorias">Compre por departamento</h2>
+        <div class="categorias">
+          <a class="categoria" href="masculino.html"><img src="img/masc-2.svg" alt="Homem vestindo jaqueta jeans" width="600" height="750" loading="lazy"><h3>Masculino</h3></a>
+          <a class="categoria" href="acessorios.html"><img src="img/acess-2.svg" alt="Relógio, cinto e óculos masculinos" width="600" height="750" loading="lazy"><h3>Acessórios</h3></a>
+          <a class="categoria" href="calcados.html"><img src="img/calc-1.svg" alt="Par de tênis brancos masculinos" width="600" height="750" loading="lazy"><h3>Calçados</h3></a>
+          <a class="categoria" href="perfumes.html"><img src="img/perf-2.svg" alt="Frasco de perfume de vidro" width="600" height="750" loading="lazy"><h3>Perfumes</h3></a>
+          <a class="categoria" href="sobre.html#lookbook"><img src="img/look-1.svg" alt="Editorial da coleção atual" width="800" height="800" loading="lazy"><h3>Lookbook</h3></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao" aria-labelledby="titulo-destaques">
+      <div class="container">
+        <h2 id="titulo-destaques">Mais vendidos da semana</h2>
+        <div class="carousel-produtos">
+        <article class="produto" data-categoria="acessorios" data-preco="399.90">
+          <figure class="produto__imagem">
+            <img src="img/acess-1.svg" alt="Relógio analógico aço" width="600" height="750" loading="lazy" decoding="async">
+            <span class="selo">-20%</span>
+          </figure>
+          <div class="produto__info">
+            <h3>Relógio analógico aço</h3>
+            <p class="produto__preco"><del>R$ 459,90</del>R$ 399,90</p>
+            <p>ou 3x sem juros</p>
+            <button class="botao adicionar-carrinho" type="button">Adicionar ao carrinho</button>
+          </div>
+        </article>
+        <article class="produto" data-categoria="roupas" data-preco="189.90">
+          <figure class="produto__imagem">
+            <img src="img/masc-1.svg" alt="Camisa de linho" width="600" height="750" loading="lazy" decoding="async">
+          </figure>
+          <div class="produto__info">
+            <h3>Camisa de linho</h3>
+            <p class="produto__preco">R$ 189,90</p>
+            <p>ou 3x sem juros</p>
+            <button class="botao adicionar-carrinho" type="button">Adicionar ao carrinho</button>
+          </div>
+        </article>
+        <article class="produto" data-categoria="calcados" data-preco="349.90">
+          <figure class="produto__imagem">
+            <img src="img/calc-2.svg" alt="Tênis casual couro" width="600" height="750" loading="lazy" decoding="async">
+            <span class="selo">Novo</span>
+          </figure>
+          <div class="produto__info">
+            <h3>Tênis casual couro</h3>
+            <p class="produto__preco">R$ 349,90</p>
+            <p>ou 3x sem juros</p>
+            <button class="botao adicionar-carrinho" type="button">Adicionar ao carrinho</button>
+          </div>
+        </article>
+        <article class="produto" data-categoria="perfumes" data-preco="279.90">
+          <figure class="produto__imagem">
+            <img src="img/perf-1.svg" alt="Eau de parfum Âmbar Noir 100ml" width="600" height="750" loading="lazy" decoding="async">
+          </figure>
+          <div class="produto__info">
+            <h3>Eau de parfum Âmbar Noir 100ml</h3>
+            <p class="produto__preco">R$ 279,90</p>
+            <p>ou 3x sem juros</p>
+            <button class="botao adicionar-carrinho" type="button">Adicionar ao carrinho</button>
+          </div>
+        </article>
+        <article class="produto" data-categoria="acessorios" data-preco="289.90">
+          <figure class="produto__imagem">
+            <img src="img/acess-5.svg" alt="Óculos de sol aviador" width="600" height="750" loading="lazy" decoding="async">
+            <span class="selo">Oferta</span>
+          </figure>
+          <div class="produto__info">
+            <h3>Óculos de sol aviador</h3>
+            <p class="produto__preco"><del>R$ 339,90</del>R$ 289,90</p>
+            <p>ou 3x sem juros</p>
+            <button class="botao adicionar-carrinho" type="button">Adicionar ao carrinho</button>
+          </div>
+        </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section class="secao newsletter" aria-labelledby="titulo-news">
+    <div class="container">
+      <h2 id="titulo-news" class="titulo-sombra">Receba ofertas exclusivas</h2>
+      <p>Cadastre seu e-mail e ganhe 10% de desconto na primeira compra.</p>
+      <form action="#" method="post">
+        <label class="sr-only" for="email-news">Seu e-mail</label>
+        <input type="email" id="email-news" name="email-news" placeholder="seu@email.com" required>
+        <button class="botao botao--contorno" type="submit">Quero receber</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="rodape">
+    <div class="container">
+      <div class="rodape__colunas">
+        <section>
+          <h2>The Closet</h2>
+          <p>Moda masculina, acessórios, calçados e perfumes em um só lugar.</p>
+        </section>
+        <nav aria-label="Departamentos">
+          <h2>Departamentos</h2>
+          <ul>
+            <li><a href="masculino.html">Masculino</a></li>
+            <li><a href="acessorios.html">Acessórios</a></li>
+            <li><a href="calcados.html">Calçados</a></li>
+            <li><a href="perfumes.html">Perfumes</a></li>
+          </ul>
+        </nav>
+        <nav aria-label="Institucional">
+          <h2>Institucional</h2>
+          <ul>
+            <li><a href="sobre.html">Sobre nós</a></li>
+            <li><a href="contato.html">Contato</a></li>
+            <li><a href="contato.html#faq">Trocas e devoluções</a></li>
+          </ul>
+        </nav>
+        <section>
+          <h2>Atendimento</h2>
+          <address>
+            <a href="tel:+555130000000">(51) 3000-0000</a><br>
+            <a href="mailto:contato@thecloset.com.br">contato@thecloset.com.br</a><br>
+            Seg. a sáb., 9h às 20h
+          </address>
+        </section>
+      </div>
+      <p class="rodape__copy">
+        &copy; <span class="ano-atual">2026</span> The Closet — Projeto acadêmico, loja fictícia.
+        Créditos de imagens e textos no arquivo <code>docs/CREDITOS.md</code>.
+      </p>
+    </div>
+  </footer>
+
+  <button class="voltar-topo" type="button" aria-label="Voltar ao topo">↑</button>
+
+  <!-- Otimização: scripts no fim e com defer (não bloqueiam a renderização) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

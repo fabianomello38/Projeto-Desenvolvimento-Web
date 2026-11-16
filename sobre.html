@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Conheça a história do The Closet, nosso lookbook e a equipe.">
+  <title>Sobre | The Closet</title>
+
+  <!-- Otimização: preconnect aos domínios externos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
+  <!-- Fontes externas (Google Fonts) com display=swap -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:wght@700&amp;display=swap">
+
+  <!-- Plugin 1: Slick Carousel (CSS) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+
+  <!-- Estilos do site (em produção usar css/style.min.css) -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+</head>
+<body>
+  <a class="pular-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="topo">
+    <div class="container topo__barra">
+      <a class="logo" href="index.html"><span>The</span> Closet</a>
+
+      <nav class="menu" id="menu-principal" aria-label="Menu principal">
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="masculino.html">Masculino</a></li>
+            <li><a href="acessorios.html">Acessórios</a></li>
+            <li><a href="calcados.html">Calçados</a></li>
+            <li><a href="perfumes.html">Perfumes</a></li>
+            <li><a href="sobre.html" aria-current="page">Sobre</a></li>
+            <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </nav>
+
+      <div class="topo__acoes">
+        <button class="carrinho" type="button" aria-label="Carrinho de compras">
+          <span aria-hidden="true">🛍</span>
+          <span class="carrinho__contador">0</span>
+        </button>
+        <button class="menu-toggle" type="button" aria-controls="menu-principal" aria-expanded="false" aria-label="Abrir menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <header class="cabecalho-pagina">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Você está em">
+          <ol>
+            <li><a href="index.html">Início</a></li>
+            <li aria-current="page">Sobre</li>
+          </ol>
+        </nav>
+        <h1 class="titulo-sombra">Nossa história</h1>
+        <p>Desde 2010 vestindo homens com estilo e preço justo.</p>
+      </div>
+    </header>
+
+    <section class="secao" aria-labelledby="titulo-historia">
+      <div class="container midia">
+        <article>
+          <h2 id="titulo-historia">Quem somos</h2>
+          <p>O The Closet nasceu como uma pequena loja de bairro em Porto Alegre e hoje atende clientes de todo o Brasil pela internet. Nosso propósito é oferecer moda masculina de qualidade, do básico ao social, com atendimento próximo e entrega rápida.</p>
+          <p>Trabalhamos com fornecedores nacionais, priorizando tecidos de origem responsável e embalagens recicláveis.</p>
+        </article>
+        <figure>
+          <video controls preload="none" poster="img/banner-3.svg" width="640" height="360">
+            <source src="media/institucional.mp4" type="video/mp4">
+            Seu navegador não suporta vídeo HTML5.
+          </video>
+          <figcaption>Vídeo institucional (adicionar arquivo em <code>media/</code>).</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="secao secao--alternada" id="lookbook" aria-labelledby="titulo-lookbook">
+      <div class="container">
+        <h2 id="titulo-lookbook">Lookbook da estação</h2>
+        <p>Clique em uma foto para ampliar.</p>
+        <div class="galeria">
+          <a href="img/look-1.svg"><img src="img/look-1.svg" alt="Foto 1 do lookbook da coleção" width="800" height="800" loading="lazy" decoding="async"></a>
+          <a href="img/look-2.svg"><img src="img/look-2.svg" alt="Foto 2 do lookbook da coleção" width="800" height="800" loading="lazy" decoding="async"></a>
+          <a href="img/look-3.svg"><img src="img/look-3.svg" alt="Foto 3 do lookbook da coleção" width="800" height="800" loading="lazy" decoding="async"></a>
+          <a href="img/look-4.svg"><img src="img/look-4.svg" alt="Foto 4 do lookbook da coleção" width="800" height="800" loading="lazy" decoding="async"></a>
+          <a href="img/look-5.svg"><img src="img/look-5.svg" alt="Foto 5 do lookbook da coleção" width="800" height="800" loading="lazy" decoding="async"></a>
+          <a href="img/look-6.svg"><img src="img/look-6.svg" alt="Foto 6 do lookbook da coleção" width="800" height="800" loading="lazy" decoding="async"></a>
+          <a href="img/look-7.svg"><img src="img/look-7.svg" alt="Foto 7 do lookbook da coleção" width="800" height="800" loading="lazy" decoding="async"></a>
+          <a href="img/look-8.svg"><img src="img/look-8.svg" alt="Foto 8 do lookbook da coleção" width="800" height="800" loading="lazy" decoding="async"></a>
+        </div>
+      </div>
+    </section>
+
+    <div class="lightbox" role="dialog" aria-modal="true" aria-label="Foto ampliada" aria-hidden="true">
+      <button class="lightbox__fechar" type="button" aria-label="Fechar">&times;</button>
+      <img src="img/look-1.svg" alt="">
+    </div>
+
+    <section class="secao" aria-labelledby="titulo-equipe">
+      <div class="container">
+        <h2 id="titulo-equipe">Equipe do projeto</h2>
+        <div class="equipe">
+          <article class="membro">
+            <img src="img/masc-3.svg" alt="Foto de Fabiano Mello" width="200" height="200" loading="lazy">
+            <h3>Fabiano Mello</h3>
+            <p>Responsável: páginas Início, Masculino e Acessórios; menu e carousel.</p>
+          </article>
+          <article class="membro">
+            <img src="img/fem-3.svg" alt="Foto de Simon Tsui" width="200" height="200" loading="lazy">
+            <h3>Simon Tsui</h3>
+            <p>Responsável: Calçados e Perfumes; vitrine, filtros e accordion.</p>
+          </article>
+          <article class="membro">
+            <img src="img/inf-3.svg" alt="Foto de Tiago Cassol" width="200" height="200" loading="lazy">
+            <h3>Tiago Cassol</h3>
+            <p>Responsável: Sobre e Contato; galeria, formulário e validação.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao secao--alternada" aria-labelledby="titulo-podcast">
+      <div class="container">
+        <h2 id="titulo-podcast">Podcast Closet Conversa</h2>
+        <audio controls preload="none">
+          <source src="media/podcast.mp3" type="audio/mpeg">
+          Seu navegador não suporta áudio HTML5.
+        </audio>
+      </div>
+    </section>
+  </main>
+
+  <section class="secao newsletter" aria-labelledby="titulo-news">
+    <div class="container">
+      <h2 id="titulo-news" class="titulo-sombra">Receba ofertas exclusivas</h2>
+      <p>Cadastre seu e-mail e ganhe 10% de desconto na primeira compra.</p>
+      <form action="#" method="post">
+        <label class="sr-only" for="email-news">Seu e-mail</label>
+        <input type="email" id="email-news" name="email-news" placeholder="seu@email.com" required>
+        <button class="botao botao--contorno" type="submit">Quero receber</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="rodape">
+    <div class="container">
+      <div class="rodape__colunas">
+        <section>
+          <h2>The Closet</h2>
+          <p>Moda masculina, acessórios, calçados e perfumes em um só lugar.</p>
+        </section>
+        <nav aria-label="Departamentos">
+          <h2>Departamentos</h2>
+          <ul>
+            <li><a href="masculino.html">Masculino</a></li>
+            <li><a href="acessorios.html">Acessórios</a></li>
+            <li><a href="calcados.html">Calçados</a></li>
+            <li><a href="perfumes.html">Perfumes</a></li>
+          </ul>
+        </nav>
+        <nav aria-label="Institucional">
+          <h2>Institucional</h2>
+          <ul>
+            <li><a href="sobre.html">Sobre nós</a></li>
+            <li><a href="contato.html">Contato</a></li>
+            <li><a href="contato.html#faq">Trocas e devoluções</a></li>
+          </ul>
+        </nav>
+        <section>
+          <h2>Atendimento</h2>
+          <address>
+            <a href="tel:+555130000000">(51) 3000-0000</a><br>
+            <a href="mailto:contato@thecloset.com.br">contato@thecloset.com.br</a><br>
+            Seg. a sáb., 9h às 20h
+          </address>
+        </section>
+      </div>
+      <p class="rodape__copy">
+        &copy; <span class="ano-atual">2026</span> The Closet — Projeto acadêmico, loja fictícia.
+        Créditos de imagens e textos no arquivo <code>docs/CREDITOS.md</code>.
+      </p>
+    </div>
+  </footer>
+
+  <button class="voltar-topo" type="button" aria-label="Voltar ao topo">↑</button>
+
+  <!-- Otimização: scripts no fim e com defer (não bloqueiam a renderização) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

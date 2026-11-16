@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tênis, botas, sapatos sociais e mocassins masculinos.">
+  <title>Calçados | The Closet</title>
+
+  <!-- Otimização: preconnect aos domínios externos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
+  <!-- Fontes externas (Google Fonts) com display=swap -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:wght@700&amp;display=swap">
+
+  <!-- Plugin 1: Slick Carousel (CSS) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+
+  <!-- Estilos do site (em produção usar css/style.min.css) -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+</head>
+<body>
+  <a class="pular-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="topo">
+    <div class="container topo__barra">
+      <a class="logo" href="index.html"><span>The</span> Closet</a>
+
+      <nav class="menu" id="menu-principal" aria-label="Menu principal">
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="masculino.html">Masculino</a></li>
+            <li><a href="acessorios.html">Acessórios</a></li>
+            <li><a href="calcados.html" aria-current="page">Calçados</a></li>
+            <li><a href="perfumes.html">Perfumes</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </nav>
+
+      <div class="topo__acoes">
+        <button class="carrinho" type="button" aria-label="Carrinho de compras">
+          <span aria-hidden="true">🛍</span>
+          <span class="carrinho__contador">0</span>
+        </button>
+        <button class="menu-toggle" type="button" aria-controls="menu-principal" aria-expanded="false" aria-label="Abrir menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <header class="cabecalho-pagina">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Você está em">
+          <ol>
+            <li><a href="index.html">Início</a></li>
+            <li aria-current="page">Calçados</li>
+          </ol>
+        </nav>
+        <h1 class="titulo-sombra">Calçados</h1>
+        <p>Tênis, botas, sapatos sociais e mocassins masculinos.</p>
+      </div>
+    </header>
+
+    <section class="secao" aria-labelledby="titulo-vitrine">
+      <div class="container">
+        <h2 id="titulo-vitrine">Produtos</h2>
+      <div class="filtros">
+        <div>
+          <label for="filtro-categoria">Categoria</label>
+          <select id="filtro-categoria" name="filtro-categoria">
+            <option value="todos">Todos</option>
+            <option value="tenis">Tênis</option>
+            <option value="sociais">Sociais</option>
+            <option value="botas">Botas</option>
+            <option value="casuais">Casuais</option>
+          </select>
+        </div>
+        <div>
+          <label for="ordenar">Ordenar</label>
+          <select id="ordenar" name="ordenar">
+            <option value="padrao">Relevância</option>
+            <option value="menor">Menor preço</option>
+            <option value="maior">Maior preço</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="vitrine">
+        <article class="produto" data-categoria="tenis" data-preco="299.90">
+          <figure class="produto__imagem">
+            <img src="img/calc-1.svg" alt="Tênis corrida" width="600" height="750" loading="lazy" decoding="async">
+          </figure>
+          <div class="produto__info">
+            <h3>Tênis corrida</h3>
+            <p class="produto__preco">R$ 299,90</p>
+            <p>ou 3x sem juros</p>
+            <button class="botao adicionar-carrinho" type="button">Adicionar ao carrinho</button>
+          </div>
+        </article>
+        <article class="produto" data-categoria="tenis" data-preco="349.90">
+          <figure class="produto__imagem">
+            <img src="img/calc-2.svg" alt="Tênis casual couro" width="600" height="750" loading="lazy" decoding="async">
+            <span class="selo">Novo</span>
+          </figure>
+          <div class="produto__info">
+            <h3>Tênis casual couro</h3>
+            <p class="produto__preco">R$ 349,90</p>
+            <p>ou 3x sem juros</p>
+            <button class="botao adicionar-carrinho" type="button">Adicionar ao carrinho</button>
+          </div>
+        </article>
+        <article class="produto" data-categoria="botas" data-preco="389.90">
+          <figure class="produto__imagem">
+            <img src="img/calc-3.svg" alt="Bota chelsea couro" width="600" height="750" loading="lazy" decoding="async">
+            <span class="selo">-13%</span>
+          </figure>
+          <div class="produto__info">
+            <h3>Bota chelsea couro</h3>
+            <p class="produto__preco"><del>R$ 449,90</del>R$ 389,90</p>
+            <p>ou 3x sem juros</p>
+            <button class="botao adicionar-carrinho" type="button">Adicionar ao carrinho</button>
+          </div>
+        </article>
+        <article class="produto" data-categoria="sociais" data-preco="329.90">
+          <figure class="produto__imagem">
+            <img src="img/calc-4.svg" alt="Sapato social oxford" width="600" height="750" loading="lazy" decoding="async">
+          </figure>
+          <div class="produto__info">
+            <h3>Sapato social oxford</h3>
+            <p class="produto__preco">R$ 329,90</p>
+            <p>ou 3x sem juros</p>
+            <button class="botao adicionar-carrinho" type="button">Adicionar ao carrinho</button>
+          </div>
+        </article>
+        <article class="produto" data-categoria="casuais" data-preco="259.90">
+          <figure class="produto__imagem">
+            <img src="img/calc-5.svg" alt="Mocassim camurça" width="600" height="750" loading="lazy" decoding="async">
+          </figure>
+          <div class="produto__info">
+            <h3>Mocassim camurça</h3>
+            <p class="produto__preco">R$ 259,90</p>
+            <p>ou 3x sem juros</p>
+            <button class="botao adicionar-carrinho" type="button">Adicionar ao carrinho</button>
+          </div>
+        </article>
+        <article class="produto" data-categoria="casuais" data-preco="89.90">
+          <figure class="produto__imagem">
+            <img src="img/calc-6.svg" alt="Chinelo slide" width="600" height="750" loading="lazy" decoding="async">
+          </figure>
+          <div class="produto__info">
+            <h3>Chinelo slide</h3>
+            <p class="produto__preco">R$ 89,90</p>
+            <p>ou 3x sem juros</p>
+            <button class="botao adicionar-carrinho" type="button">Adicionar ao carrinho</button>
+          </div>
+        </article>
+      </div>
+      </div>
+    </section>
+
+    <section class="secao secao--alternada" aria-labelledby="titulo-guia">
+      <div class="container">
+        <h2 id="titulo-guia">Dúvidas sobre calçados</h2>
+      <div class="accordion" id="acc-calcados">
+        <div class="accordion__item">
+          <h3>
+            <button class="accordion__botao" type="button" aria-expanded="false" aria-controls="acc-calcados-painel-1">Como descobrir minha numeração?</button>
+          </h3>
+          <div class="accordion__painel" id="acc-calcados-painel-1">
+            <p>Meça o pé do calcanhar até a ponta do dedo maior e consulte a tabela: 26 cm = 40, 27 cm = 41, 28 cm = 42, 29 cm = 43.</p>
+          </div>
+        </div>
+        <div class="accordion__item">
+          <h3>
+            <button class="accordion__botao" type="button" aria-expanded="false" aria-controls="acc-calcados-painel-2">Os tênis são fôrma pequena?</button>
+          </h3>
+          <div class="accordion__painel" id="acc-calcados-painel-2">
+            <p>Indicamos na descrição de cada produto. Quando a fôrma for menor, recomendamos um número acima.</p>
+          </div>
+        </div>
+        <div class="accordion__item">
+          <h3>
+            <button class="accordion__botao" type="button" aria-expanded="false" aria-controls="acc-calcados-painel-3">Como cuidar de calçados de couro?</button>
+          </h3>
+          <div class="accordion__painel" id="acc-calcados-painel-3">
+            <p>Limpe com pano úmido, deixe secar à sombra e hidrate o couro a cada dois meses.</p>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+  </main>
+
+  <section class="secao newsletter" aria-labelledby="titulo-news">
+    <div class="container">
+      <h2 id="titulo-news" class="titulo-sombra">Receba ofertas exclusivas</h2>
+      <p>Cadastre seu e-mail e ganhe 10% de desconto na primeira compra.</p>
+      <form action="#" method="post">
+        <label class="sr-only" for="email-news">Seu e-mail</label>
+        <input type="email" id="email-news" name="email-news" placeholder="seu@email.com" required>
+        <button class="botao botao--contorno" type="submit">Quero receber</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="rodape">
+    <div class="container">
+      <div class="rodape__colunas">
+        <section>
+          <h2>The Closet</h2>
+          <p>Moda masculina, acessórios, calçados e perfumes em um só lugar.</p>
+        </section>
+        <nav aria-label="Departamentos">
+          <h2>Departamentos</h2>
+          <ul>
+            <li><a href="masculino.html">Masculino</a></li>
+            <li><a href="acessorios.html">Acessórios</a></li>
+            <li><a href="calcados.html">Calçados</a></li>
+            <li><a href="perfumes.html">Perfumes</a></li>
+          </ul>
+        </nav>
+        <nav aria-label="Institucional">
+          <h2>Institucional</h2>
+          <ul>
+            <li><a href="sobre.html">Sobre nós</a></li>
+            <li><a href="contato.html">Contato</a></li>
+            <li><a href="contato.html#faq">Trocas e devoluções</a></li>
+          </ul>
+        </nav>
+        <section>
+          <h2>Atendimento</h2>
+          <address>
+            <a href="tel:+555130000000">(51) 3000-0000</a><br>
+            <a href="mailto:contato@thecloset.com.br">contato@thecloset.com.br</a><br>
+            Seg. a sáb., 9h às 20h
+          </address>
+        </section>
+      </div>
+      <p class="rodape__copy">
+        &copy; <span class="ano-atual">2026</span> The Closet — Projeto acadêmico, loja fictícia.
+        Créditos de imagens e textos no arquivo <code>docs/CREDITOS.md</code>.
+      </p>
+    </div>
+  </footer>
+
+  <button class="voltar-topo" type="button" aria-label="Voltar ao topo">↑</button>
+
+  <!-- Otimização: scripts no fim e com defer (não bloqueiam a renderização) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
