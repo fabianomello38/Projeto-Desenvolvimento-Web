@@ -24,6 +24,7 @@ Projeto Final da Disciplina/
 ├── perfumes.html       Vitrine de perfumes + accordion de famílias olfativas
 ├── sobre.html          História, vídeo, galeria (lookbook com lightbox), equipe, áudio
 ├── contato.html        Formulário com validação, mapa e FAQ (accordion)
+├── checkout.html       Carrinho de compras e formulário de checkout demonstrativo
 ├── css/style.css       Único arquivo de estilos (mobile-first)
 ├── js/main.js          Scripts (jQuery + plugins + funções próprias)
 ├── img/                Imagens (trocar os SVG por fotos .webp otimizadas)
@@ -38,7 +39,7 @@ Projeto Final da Disciplina/
 
 | Requisito | Onde está | Status |
 |---|---|---|
-| 7 páginas de navegação | 7 páginas: Início, Masculino, Acessórios, Calçados, Perfumes, Sobre, Contato | ✅ |
+| Navegação principal e checkout | 7 páginas no menu principal e checkout acessível pelo carrinho | ✅ |
 | 1 formulário com ao menos 5 elementos | `contato.html`: nome, e-mail, telefone, CPF, CEP, assunto (select), data, radio, checkbox, textarea, aceite — 11 campos | ✅ |
 | 1 galeria de fotos | `sobre.html#lookbook` (galeria em mosaico + lightbox) e vitrines de produtos | ✅ |
 | Menu responsivo | Menu "hambúrguer" no celular, horizontal a partir de 52em | ✅ |
@@ -69,6 +70,7 @@ Projeto Final da Disciplina/
 **JavaScript / jQuery**
 - Eventos: `click` (menu, carrinho, accordion, galeria), `mouseover/mouseout` (selos dos produtos), `change` (filtro e ordenação), `blur/focus` (validação), `input`, `submit`, `scroll`, `keydown` (Esc fecha lightbox)
 - Funções próprias: `paraNumero()`, `marcarCampo()`, `validarCampo()`, `validarCPF()`, `lerCarrinho()/gravarCarrinho()`, `fecharLightbox()`
+- O carrinho salva os produtos escolhidos no navegador e apresenta o resumo e as opções de pagamento em `checkout.html`; pagamentos não são processados.
 - Plug-ins/efeitos: carousel, accordion, lightbox, máscaras, botão voltar ao topo
 
 ## 4. Mobile-first e breakpoints baseados no conteúdo

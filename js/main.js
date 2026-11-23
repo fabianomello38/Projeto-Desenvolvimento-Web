@@ -5,7 +5,7 @@
      - Slick Carousel 1.8.1  (plugin 1: carousel do banner e de destaques)
      - jQuery Mask 1.14.16   (plugin 2: máscaras de CPF, telefone e CEP)
    Funcionalidades próprias: menu responsivo, accordion, lightbox da galeria,
-   filtro/ordenação da vitrine, carrinho (contador), validação do formulário,
+   filtro/ordenação da vitrine, carrinho com itens e contador, validação do formulário,
    botão voltar ao topo.
    ========================================================================== */
 
@@ -19,13 +19,65 @@ $(function () {
     return parseFloat(String(valor).replace(/[^\d,.-]/g, "").replace(",", ".")) || 0;
   }
 
-  // Lê e grava o carrinho no localStorage (com try/catch: pode estar bloqueado)
+  // Mantém os produtos escolhidos no localStorage para compartilhar entre páginas.
   function lerCarrinho() {
-    try { return parseInt(localStorage.getItem("thecloset-carrinho"), 10) || 0; }
-    catch (e) { return 0; }
+    try {
+      var dados = localStorage.getItem("thecloset-carrinho-itens");
+      var itens = dados ? JSON.parse(dados) : [];
+      if (!Array.isArray(itens)) { throw new Error("Formato de carrinho inválido."); }
+      return itens.filter(function (item) {
+        return item && typeof item.nome === "string" &&
+          Number.isFinite(Number(item.preco)) &&
+          typeof item.imagem === "string" && /^img\/[\w-]+\.svg$/.test(item.imagem);
+      });
+    } catch (e) {
+      console.error("Não foi possível ler os itens do carrinho.", e);
+      return [];
+    }
   }
-  function gravarCarrinho(qtd) {
-    try { localStorage.setItem("thecloset-carrinho", qtd); } catch (e) { /* ignora */ }
+  function gravarCarrinho(itens) {
+    try {
+      localStorage.setItem("thecloset-carrinho-itens", JSON.stringify(itens));
+      return true;
+    } catch (e) {
+      console.error("Não foi possível salvar os itens do carrinho.", e);
+      return false;
+    }
+  }
+  function atualizarContador(itens) {
+    $(".carrinho__contador").text(itens.length);
+  }
+  function formatarPreco(valor) {
+    return new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(valor);
+  }
+  function renderizarCarrinho(itens) {
+    var $lista = $("#itens-carrinho");
+    if (!$lista.length) { return; }
+
+    $lista.empty();
+    var total = 0;
+    itens.forEach(function (item, indice) {
+      var preco = Number(item.preco);
+      total += preco;
+      var $linha = $("<li>").addClass("item-carrinho");
+      $("<img>").attr({ src: item.imagem, alt: "" }).appendTo($linha);
+      var $detalhes = $("<div>").addClass("item-carrinho__detalhes").appendTo($linha);
+      $("<h3>").text(item.nome).appendTo($detalhes);
+      $("<p>").text(formatarPreco(preco)).appendTo($detalhes);
+      $("<button>").attr({
+        type: "button",
+        "data-indice": indice,
+        "aria-label": "Remover " + item.nome
+      })
+        .addClass("item-carrinho__remover").text("Remover")
+        .appendTo($linha);
+      $lista.append($linha);
+    });
+
+    $("#subtotal-carrinho").text(formatarPreco(total));
+    $("#carrinho-vazio").prop("hidden", itens.length > 0);
+    $("#resumo-carrinho").prop("hidden", itens.length === 0);
+    $("#finalizar-compra").prop("disabled", itens.length === 0);
   }
 
   // Marca campo como válido/inválido e mostra mensagem
@@ -80,23 +132,55 @@ $(function () {
 
   /* ---------- Plugin 2: jQuery Mask ---------- */
   if ($.fn.mask) {
-    $("#cpf").mask("000.000.000-00");
+    $("#cpf, #cpf-checkout").mask("000.000.000-00");
     $("#telefone").mask("(00) 00000-0000");
-    $("#cep").mask("00000-000");
+    $("#cep, #cep-checkout").mask("00000-000");
   }
 
   /* ---------- Carrinho (click + animação) ---------- */
-  var $contador = $(".carrinho__contador");
-  $contador.text(lerCarrinho());
+  var itensCarrinho = lerCarrinho();
+  atualizarContador(itensCarrinho);
+  renderizarCarrinho(itensCarrinho);
 
   $(document).on("click", ".adicionar-carrinho", function () {
-    var qtd = lerCarrinho() + 1;
-    gravarCarrinho(qtd);
-    $contador.text(qtd).removeClass("pulsar");
+    var $produto = $(this).closest(".produto");
+    var $imagem = $produto.find(".produto__imagem img");
+    itensCarrinho.push({
+      nome: $produto.find(".produto__info h3").text().trim(),
+      preco: Number($produto.data("preco")),
+      imagem: $imagem.attr("src")
+    });
+    if (!gravarCarrinho(itensCarrinho)) {
+      window.alert("Não foi possível salvar o carrinho neste navegador.");
+      itensCarrinho.pop();
+      return;
+    }
+    atualizarContador(itensCarrinho);
+    renderizarCarrinho(itensCarrinho);
+    var $contador = $(".carrinho__contador");
+    $contador.removeClass("pulsar");
     // força reflow para reiniciar a animação
     void $contador[0].offsetWidth;
     $contador.addClass("pulsar");
     $(this).text("Adicionado ✓");
+  });
+
+  $("#itens-carrinho").on("click", ".item-carrinho__remover", function () {
+    var indice = Number($(this).attr("data-indice"));
+    var removido = itensCarrinho.splice(indice, 1);
+    if (!gravarCarrinho(itensCarrinho)) {
+      itensCarrinho.splice(indice, 0, removido[0]);
+      return;
+    }
+    atualizarContador(itensCarrinho);
+    renderizarCarrinho(itensCarrinho);
+  });
+
+  $(".metodo-pagamento input").on("change", function () {
+    var metodo = $(this).val();
+    $(".pagamento-detalhe").prop("hidden", true);
+    $('.pagamento-detalhe[data-metodo="' + metodo + '"]').prop("hidden", false);
+    $("#codigo-cupom").prop("required", metodo === "cupom").val("").trigger("input");
   });
 
   /* ---------- Vitrine: filtro e ordenação (evento change) ---------- */
@@ -191,6 +275,31 @@ $(function () {
     }
     return true;
   }
+
+  $("#cpf-checkout, #codigo-cupom").on("input", function () {
+    this.setCustomValidity("");
+    $("#confirmacao-checkout").prop("hidden", true).hide();
+  });
+
+  $("#form-checkout").on("submit", function (evento) {
+    evento.preventDefault();
+    var $cpf = $("#cpf-checkout");
+    if (!validarCPF($cpf.val())) {
+      $cpf[0].setCustomValidity("Informe um CPF válido.");
+      $cpf[0].reportValidity();
+      return;
+    }
+    $cpf[0].setCustomValidity("");
+    var metodo = $("input[name='metodo-pagamento']:checked").val();
+    var $cupom = $("#codigo-cupom");
+    if (metodo === "cupom" && !$cupom.val().trim()) {
+      $cupom[0].setCustomValidity("Informe o código do cupom.");
+      $cupom[0].reportValidity();
+      return;
+    }
+    $cupom[0].setCustomValidity("");
+    $("#confirmacao-checkout").prop("hidden", false).slideDown(300);
+  });
 
   function validarCampo($campo) {
     var regra = regras[$campo.attr("name")];

@@ -148,7 +148,9 @@ h3 { font-size: 1.15rem; }
 
 .carrinho {
   position: relative;
+  display: inline-flex; align-items: center;
   background: none; border: 0; cursor: pointer; font-size: 1.4rem;
+  line-height: 1; text-decoration: none;
 }
 .carrinho__contador {
   position: absolute; top: -0.4rem; right: -0.6rem;
@@ -408,6 +410,35 @@ h3 { font-size: 1.15rem; }
   font-weight: 600;
 }
 
+/* Checkout */
+.checkout-grid { display: grid; gap: 1.5rem; align-items: start; }
+.checkout-resumo {
+  padding: 1.5rem;
+  background: var(--cor-superficie);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+}
+.checkout-resumo h2 { margin-bottom: 1rem; }
+.itens-carrinho { display: grid; gap: 1rem; }
+.item-carrinho {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr auto;
+  gap: 0.75rem;
+  align-items: center;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--cor-borda);
+}
+.item-carrinho img { width: 4.5rem; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--raio); }
+.item-carrinho__detalhes h3 { font-size: 1rem; }
+.item-carrinho__detalhes p { color: var(--cor-secundaria); font-weight: 600; }
+.item-carrinho__remover { border: 0; background: none; color: var(--cor-destaque-escura); text-decoration: underline; cursor: pointer; }
+.resumo-carrinho { padding-top: 1rem; }
+.resumo-carrinho p { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
+.resumo-carrinho small, .carrinho-vazio { color: #666; }
+.metodo-pagamento { margin-bottom: 1rem; }
+.pagamento-detalhe { padding: 1rem; border-radius: var(--raio); background: var(--cor-fundo); }
+.checkout-formulario .botao:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+
 /* mapa / contato */
 .contato-grid { display: grid; gap: 2rem; }
 .mapa iframe { width: 100%; aspect-ratio: 4 / 3; border: 0; border-radius: var(--raio); }
@@ -505,6 +536,7 @@ h3 { font-size: 1.15rem; }
   .hero__slide img { aspect-ratio: 16 / 7; }
   .hero__texto { inset: 0 auto 0 0; max-width: 32rem; display: flex; flex-direction: column; justify-content: center; padding-left: 6%; background: linear-gradient(to right, rgba(0, 0, 0, 0.65), transparent); }
   .contato-grid { grid-template-columns: 3fr 2fr; }
+  .checkout-grid { grid-template-columns: 1fr 1.25fr; }
   .midia { grid-template-columns: 2fr 1fr; align-items: center; }
   .rodape__colunas { grid-template-columns: 2fr 1fr 1fr 1fr; }
 }

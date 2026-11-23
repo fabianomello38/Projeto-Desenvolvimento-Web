@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Revise seu carrinho e escolha como pagar no The Closet.">
+  <title>Checkout | The Closet</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:wght@700&amp;display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+</head>
+<body>
+  <a class="pular-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="topo">
+    <div class="container topo__barra">
+      <a class="logo" href="index.html"><span>The</span> Closet</a>
+
+      <nav class="menu" id="menu-principal" aria-label="Menu principal">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="masculino.html">Masculino</a></li>
+          <li><a href="acessorios.html">Acessórios</a></li>
+          <li><a href="calcados.html">Calçados</a></li>
+          <li><a href="perfumes.html">Perfumes</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </nav>
+
+      <div class="topo__acoes">
+        <a class="carrinho" href="checkout.html" aria-label="Carrinho de compras">
+          <span aria-hidden="true">🛍</span>
+          <span class="carrinho__contador">0</span>
+        </a>
+        <button class="menu-toggle" type="button" aria-controls="menu-principal" aria-expanded="false" aria-label="Abrir menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <header class="cabecalho-pagina">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Você está em">
+          <ol>
+            <li><a href="index.html">Início</a></li>
+            <li aria-current="page">Checkout</li>
+          </ol>
+        </nav>
+        <h1 class="titulo-sombra">Finalizar pedido</h1>
+        <p>Confira seus produtos e informe os dados para entrega e pagamento.</p>
+      </div>
+    </header>
+
+    <section class="secao">
+      <div class="container checkout-grid">
+        <section class="checkout-resumo" aria-labelledby="titulo-resumo">
+          <h2 id="titulo-resumo">Seu carrinho</h2>
+          <p id="carrinho-vazio" class="carrinho-vazio" hidden>
+            Seu carrinho está vazio. <a href="masculino.html">Continue comprando</a>.
+          </p>
+          <ul id="itens-carrinho" class="itens-carrinho lista-limpa" aria-live="polite"></ul>
+          <div id="resumo-carrinho" class="resumo-carrinho" hidden>
+            <p><strong>Subtotal</strong><strong id="subtotal-carrinho">R$ 0,00</strong></p>
+            <small>Frete calculado após a confirmação do endereço.</small>
+          </div>
+        </section>
+
+        <form class="formulario checkout-formulario" id="form-checkout">
+          <h2>Dados para entrega</h2>
+          <div class="campo">
+            <label for="nome-comprador">Nome completo</label>
+            <input type="text" id="nome-comprador" name="nome-comprador" autocomplete="name" required minlength="3">
+          </div>
+          <div class="campo">
+            <label for="cpf-checkout">CPF</label>
+            <input type="text" id="cpf-checkout" name="cpf" inputmode="numeric" autocomplete="off" placeholder="000.000.000-00" required>
+          </div>
+          <div class="linha">
+            <div class="campo">
+              <label for="endereco-entrega">Endereço</label>
+              <input type="text" id="endereco-entrega" name="endereco-entrega" autocomplete="street-address" placeholder="Rua e número" required>
+            </div>
+            <div class="campo">
+              <label for="complemento-entrega">Complemento</label>
+              <input type="text" id="complemento-entrega" name="complemento-entrega" autocomplete="address-line2" placeholder="Apartamento, bloco etc.">
+            </div>
+          </div>
+          <div class="campo">
+            <label for="cep-checkout">CEP</label>
+            <input type="text" id="cep-checkout" name="cep" inputmode="numeric" autocomplete="postal-code" placeholder="00000-000" required>
+          </div>
+
+          <fieldset>
+            <legend>Forma de pagamento</legend>
+            <div class="opcoes metodo-pagamento">
+              <label><input type="radio" name="metodo-pagamento" value="credito" checked> Crédito</label>
+              <label><input type="radio" name="metodo-pagamento" value="debito"> Débito</label>
+              <label><input type="radio" name="metodo-pagamento" value="cupom"> Cupom</label>
+              <label><input type="radio" name="metodo-pagamento" value="pix"> PIX</label>
+            </div>
+            <div class="pagamento-detalhe" data-metodo="credito">
+              <p>Pagamento com cartão de crédito. Nenhum dado de cartão será solicitado ou processado nesta demonstração.</p>
+            </div>
+            <div class="pagamento-detalhe" data-metodo="debito" hidden>
+              <p>Pagamento com cartão de débito. Nenhum dado de cartão será solicitado ou processado nesta demonstração.</p>
+            </div>
+            <div class="pagamento-detalhe" data-metodo="cupom" hidden>
+              <div class="campo">
+                <label for="codigo-cupom">Código do cupom</label>
+                <input type="text" id="codigo-cupom" name="codigo-cupom" autocomplete="off">
+              </div>
+              <small>Esta demonstração não valida nem aplica cupons.</small>
+            </div>
+            <div class="pagamento-detalhe" data-metodo="pix" hidden>
+              <p>As instruções de pagamento via PIX seriam exibidas após a confirmação do pedido.</p>
+            </div>
+          </fieldset>
+
+          <p class="alerta-sucesso" id="confirmacao-checkout" role="status" hidden>
+            Dados conferidos. Esta loja demonstrativa não aplica cupons nem processa pagamentos.
+          </p>
+          <button class="botao" id="finalizar-compra" type="submit">Confirmar pedido</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="container">
+      <div class="rodape__colunas">
+        <section>
+          <h2>The Closet</h2>
+          <p>Moda masculina, acessórios, calçados e perfumes em um só lugar.</p>
+        </section>
+        <nav aria-label="Departamentos">
+          <h2>Departamentos</h2>
+          <ul>
+            <li><a href="masculino.html">Masculino</a></li>
+            <li><a href="acessorios.html">Acessórios</a></li>
+            <li><a href="calcados.html">Calçados</a></li>
+            <li><a href="perfumes.html">Perfumes</a></li>
+          </ul>
+        </nav>
+        <nav aria-label="Institucional">
+          <h2>Institucional</h2>
+          <ul>
+            <li><a href="sobre.html">Sobre nós</a></li>
+            <li><a href="contato.html">Contato</a></li>
+            <li><a href="contato.html#faq">Trocas e devoluções</a></li>
+          </ul>
+        </nav>
+        <section>
+          <h2>Atendimento</h2>
+          <address>
+            <a href="tel:+555130000000">(51) 3000-0000</a><br>
+            <a href="mailto:contato@thecloset.com.br">contato@thecloset.com.br</a><br>
+            Seg. a sáb., 9h às 20h
+          </address>
+        </section>
+      </div>
+      <p class="rodape__copy">
+        &copy; <span class="ano-atual">2026</span> The Closet — Projeto acadêmico, loja fictícia.
+        Créditos de imagens e textos no arquivo <code>docs/CREDITOS.md</code>.
+      </p>
+    </div>
+  </footer>
+
+  <button class="voltar-topo" type="button" aria-label="Voltar ao topo">↑</button>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
