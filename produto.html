@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Camisa de linho masculina: detalhes, tamanhos e preço.">
+  <title>Camisa de linho | The Closet</title>
+
+  <!-- Otimização: preconnect aos domínios externos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
+  <!-- Fontes externas (Google Fonts) com display=swap -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:wght@700&amp;display=swap">
+
+  <!-- Plugin 1: Slick Carousel (CSS) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+
+  <!-- Estilos do site (em produção usar css/style.min.css) -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+</head>
+<body>
+  <a class="pular-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="topo">
+    <div class="container topo__barra">
+      <a class="logo" href="index.html"><span>The</span> Closet</a>
+
+      <nav class="menu" id="menu-principal" aria-label="Menu principal">
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="masculino.html">Masculino</a></li>
+            <li><a href="acessorios.html">Acessórios</a></li>
+            <li><a href="calcados.html">Calçados</a></li>
+            <li><a href="perfumes.html">Perfumes</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </nav>
+
+      <div class="topo__acoes">
+        <button class="carrinho" type="button" aria-label="Carrinho de compras">
+          <span aria-hidden="true">🛍</span>
+          <span class="carrinho__contador">0</span>
+        </button>
+        <button class="menu-toggle" type="button" aria-controls="menu-principal" aria-expanded="false" aria-label="Abrir menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="secao" aria-labelledby="titulo-produto">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Você está em">
+          <ol>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="masculino.html">Masculino</a></li>
+            <li aria-current="page">Camisa de linho</li>
+          </ol>
+        </nav>
+
+        <article class="detalhe-produto">
+          <figure class="detalhe-produto__imagem">
+            <img src="img/masc-1.svg" alt="Camisa de linho" width="600" height="750" decoding="async">
+          </figure>
+
+          <div class="detalhe-produto__info">
+            <h1 id="titulo-produto">Camisa de linho</h1>
+            <p class="produto__preco">R$ 189,90</p>
+            <p>ou 3x de R$ 63,30 sem juros</p>
+
+            <p>Camisa de linho com caimento regular, tecido leve e respirável, ideal para dias quentes. Combina com calça chino ou jeans para um visual casual e elegante.</p>
+
+            <form class="detalhe-produto__opcoes" action="#" onsubmit="return false;">
+              <fieldset>
+                <legend>Tamanho</legend>
+                <label><input type="radio" name="tamanho" value="P"> P</label>
+                <label><input type="radio" name="tamanho" value="M" checked> M</label>
+                <label><input type="radio" name="tamanho" value="G"> G</label>
+                <label><input type="radio" name="tamanho" value="GG"> GG</label>
+              </fieldset>
+              <div>
+                <label for="quantidade">Quantidade</label>
+                <input type="number" id="quantidade" name="quantidade" value="1" min="1" max="10">
+              </div>
+              <button class="botao adicionar-carrinho" type="button">Adicionar ao carrinho</button>
+            </form>
+
+            <h2>Detalhes</h2>
+            <ul>
+              <li>Composição: 100% linho</li>
+              <li>Modelagem: regular</li>
+              <li>Cor: off-white</li>
+              <li>Lavar à mão ou em ciclo delicado</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <section class="secao newsletter" aria-labelledby="titulo-news">
+    <div class="container">
+      <h2 id="titulo-news" class="titulo-sombra">Receba ofertas exclusivas</h2>
+      <p>Cadastre seu e-mail e ganhe 10% de desconto na primeira compra.</p>
+      <form action="#" method="post">
+        <label class="sr-only" for="email-news">Seu e-mail</label>
+        <input type="email" id="email-news" name="email-news" placeholder="seu@email.com" required>
+        <button class="botao botao--contorno" type="submit">Quero receber</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="rodape">
+    <div class="container">
+      <div class="rodape__colunas">
+        <section>
+          <h2>The Closet</h2>
+          <p>Moda masculina, acessórios, calçados e perfumes em um só lugar.</p>
+        </section>
+        <nav aria-label="Departamentos">
+          <h2>Departamentos</h2>
+          <ul>
+            <li><a href="masculino.html">Masculino</a></li>
+            <li><a href="acessorios.html">Acessórios</a></li>
+            <li><a href="calcados.html">Calçados</a></li>
+            <li><a href="perfumes.html">Perfumes</a></li>
+          </ul>
+        </nav>
+        <nav aria-label="Institucional">
+          <h2>Institucional</h2>
+          <ul>
+            <li><a href="sobre.html">Sobre nós</a></li>
+            <li><a href="contato.html">Contato</a></li>
+            <li><a href="contato.html#faq">Trocas e devoluções</a></li>
+          </ul>
+        </nav>
+        <section>
+          <h2>Atendimento</h2>
+          <address>
+            <a href="tel:+555130000000">(51) 3000-0000</a><br>
+            <a href="mailto:contato@thecloset.com.br">contato@thecloset.com.br</a><br>
+            Seg. a sáb., 9h às 20h
+          </address>
+        </section>
+      </div>
+      <p class="rodape__copy">
+        &copy; <span class="ano-atual">2026</span> The Closet — Projeto acadêmico, loja fictícia.
+        Créditos de imagens e textos no arquivo <code>docs/CREDITOS.md</code>.
+      </p>
+    </div>
+  </footer>
+
+  <button class="voltar-topo" type="button" aria-label="Voltar ao topo">↑</button>
+
+  <!-- Otimização: scripts no fim e com defer (não bloqueiam a renderização) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
