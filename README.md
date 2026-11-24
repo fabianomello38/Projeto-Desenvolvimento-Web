@@ -41,7 +41,7 @@ Projeto Final da Disciplina/
 |---|---|---|
 | Navegação principal e checkout | 8 páginas: Início, Masculino, Acessórios, Calçados, Perfumes, Sobre, Contato e Checkout | ✅ |
 | 1 formulário com ao menos 5 elementos | `contato.html`: nome, e-mail, telefone, CPF, CEP, assunto (select), data, radio, checkbox, textarea, aceite — 11 campos | ✅ |
-| 1 galeria de fotos | `sobre.html#lookbook` (galeria em mosaico + lightbox) e vitrines de produtos | ✅ |
+| 1 galeria de fotos | `sobre.html#lookbook` (galeria em grid + lightbox) e vitrines de produtos | ✅ |
 | Menu responsivo | Menu "hambúrguer" no celular, horizontal a partir de 52em | ✅ |
 | Técnicas de otimização | Ver seção 5 | ✅ |
 | Fontes externas | Google Fonts: *Playfair Display* (títulos) e *Inter* (textos) | ✅ |
@@ -63,7 +63,7 @@ Projeto Final da Disciplina/
 - **Múltiplos backgrounds** (`.cabecalho-pagina`: gradiente + imagem)
 - Transformações (`scale`, `rotate`, `translateY`) e transições
 - Animações com `@keyframes` (`subir`, `aparecer`, `pulsar`)
-- **Grid** (vitrine, galeria em mosaico, rodapé, formulário) e **Flexbox** (cabeçalho, categorias, cards, filtros)
+- **Grid** (vitrine, galeria, rodapé, formulário) e **Flexbox** (cabeçalho, categorias, cards, filtros)
 - **Fluid grid** (`width: 92%`, `fr`, `minmax`, `clamp()`)
 - **Media queries mobile-first** (`min-width`)
 
@@ -80,7 +80,7 @@ O CSS base é o do celular; as media queries só **acrescentam** regras com `min
 | Breakpoint | Motivo (conteúdo) | O que muda |
 |---|---|---|
 | `36em` (~576px) | Dois cards de produto cabem lado a lado sem quebrar preço e botão | Vitrine 2 colunas, galeria 3 colunas, formulário em duas colunas |
-| `52em` (~832px) | Os 7 itens do menu cabem inteiros na barra | Menu horizontal, vitrine 3 colunas, galeria em mosaico, contato com mapa ao lado |
+| `52em` (~832px) | Os 7 itens do menu cabem inteiros na barra | Menu horizontal, vitrine 3 colunas, galeria em 4 colunas, contato com mapa ao lado |
 | `72em` (~1152px) | Sobra espaço lateral nos cards de 3 colunas | Vitrine 4 colunas, mais respiro nas seções |
 
 Unidades em `em` para acompanhar o zoom/tamanho de fonte do usuário.

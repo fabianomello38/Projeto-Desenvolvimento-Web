@@ -317,7 +317,10 @@ h3 { font-size: 1.15rem; }
   gap: 0.5rem;
 }
 .galeria a { display: block; overflow: hidden; border-radius: var(--raio); }
-.galeria img { aspect-ratio: 1; object-fit: cover; transition: transform 0.5s ease, filter 0.5s ease; }
+.galeria img { width: 100%; aspect-ratio: 1; object-fit: cover; transition: transform 0.5s ease, filter 0.5s ease; }
+/* fotos em retrato: mantém o rosto visível no recorte quadrado */
+.galeria img.foco-topo,
+.categoria img.foco-topo { object-position: center 8%; }
 .galeria a:hover img { transform: scale(1.1) rotate(1deg); filter: saturate(1.3); }
 
 /* lightbox simples (funcionalidade JS própria) */
@@ -337,6 +340,10 @@ h3 { font-size: 1.15rem; }
 /* vídeo e áudio */
 .midia { display: grid; gap: 1.5rem; }
 .midia video, .midia audio { width: 100%; border-radius: var(--raio); }
+/* vídeo do YouTube incorporado (proporção 16:9, fluido) */
+.video-youtube { width: 100%; }
+.video-youtube iframe { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border: 0; border-radius: var(--raio); box-shadow: var(--sombra); }
+.video-youtube figcaption { margin-top: 0.5rem; font-size: 0.9rem; }
 
 /* 9. Accordion (FAQ) ---------------------------------------------------- */
 .accordion__item { border-bottom: 1px solid var(--cor-borda); }
@@ -535,13 +542,11 @@ h3 { font-size: 1.15rem; }
   .vitrine { grid-template-columns: repeat(3, 1fr); }
   .categoria { flex: 1 1 calc(33.333% - 0.75rem); }
   .galeria { grid-template-columns: repeat(4, 1fr); }
-  /* galeria em mosaico: primeiro item ocupa 2x2 */
-  .galeria a:first-child { grid-column: span 2; grid-row: span 2; }
   .hero__slide img { aspect-ratio: 16 / 7; }
   .hero__texto { inset: 0 auto 0 0; max-width: 32rem; display: flex; flex-direction: column; justify-content: center; padding-left: 6%; background: linear-gradient(to right, rgba(0, 0, 0, 0.65), transparent); }
   .contato-grid { grid-template-columns: 3fr 2fr; }
   .checkout-grid { grid-template-columns: 1fr 1.25fr; }
-  .midia { grid-template-columns: 2fr 1fr; align-items: center; }
+  .midia { grid-template-columns: 1fr 1fr; align-items: center; }
   .rodape__colunas { grid-template-columns: 2fr 1fr 1fr 1fr; }
 }
 
