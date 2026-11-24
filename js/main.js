@@ -457,6 +457,25 @@ $(function () {
     $("html, body").animate({ scrollTop: 0 }, 500);
   });
 
+  /* ---------- Vídeo do YouTube: carrega o player só no clique ---------- */
+  // Aberto direto do arquivo (file://) o YouTube recusa o player (erro 153);
+  // nesse caso o link segue normalmente e abre o vídeo no próprio YouTube.
+  $(".video-capa").on("click", function (evento) {
+    if (window.location.protocol === "file:") { return; }
+    evento.preventDefault();
+    var id = $(this).data("video-id");
+    var $player = $("<iframe>").attr({
+      src: "https://www.youtube-nocookie.com/embed/" + id + "?autoplay=1",
+      title: $(this).attr("aria-label"),
+      width: 560,
+      height: 315,
+      allow: "autoplay; encrypted-media; picture-in-picture; web-share",
+      referrerpolicy: "strict-origin-when-cross-origin",
+      allowfullscreen: ""
+    });
+    $(this).replaceWith($player);
+  });
+
   /* ---------- Ano atual no rodapé ---------- */
   $(".ano-atual").text(new Date().getFullYear());
 });
