@@ -25,11 +25,30 @@ $(function () {
       var dados = localStorage.getItem("thecloset-carrinho-itens");
       var itens = dados ? JSON.parse(dados) : [];
       if (!Array.isArray(itens)) { throw new Error("Formato de carrinho inválido."); }
-      return itens.filter(function (item) {
+      var validos = itens.filter(function (item) {
         return item && typeof item.nome === "string" &&
           Number.isFinite(Number(item.preco)) &&
-          typeof item.imagem === "string" && /^img\/[\w-]+\.svg$/.test(item.imagem);
+          typeof item.imagem === "string" && /^img\/[\w-]+\.(svg|webp|jpe?g|png)$/i.test(item.imagem);
       });
+      return validos.reduce(function (agrupados, item) {
+        var existente = agrupados.find(function (outro) {
+          return outro.nome === item.nome && Number(outro.preco) === Number(item.preco) &&
+            outro.imagem === item.imagem;
+        });
+        var quantidade = Number(item.quantidade);
+        if (!Number.isInteger(quantidade) || quantidade < 1) { quantidade = 1; }
+        if (existente) {
+          existente.quantidade += quantidade;
+        } else {
+          agrupados.push({
+            nome: item.nome,
+            preco: Number(item.preco),
+            imagem: item.imagem,
+            quantidade: quantidade
+          });
+        }
+        return agrupados;
+      }, []);
     } catch (e) {
       console.error("Não foi possível ler os itens do carrinho.", e);
       return [];
@@ -45,7 +64,8 @@ $(function () {
     }
   }
   function atualizarContador(itens) {
-    $(".carrinho__contador").text(itens.length);
+    var quantidade = itens.reduce(function (total, item) { return total + item.quantidade; }, 0);
+    $(".carrinho__contador").text(quantidade);
   }
   function formatarPreco(valor) {
     return new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(valor);
@@ -58,12 +78,28 @@ $(function () {
     var total = 0;
     itens.forEach(function (item, indice) {
       var preco = Number(item.preco);
-      total += preco;
+      var subtotal = preco * item.quantidade;
+      total += subtotal;
       var $linha = $("<li>").addClass("item-carrinho");
       $("<img>").attr({ src: item.imagem, alt: "" }).appendTo($linha);
       var $detalhes = $("<div>").addClass("item-carrinho__detalhes").appendTo($linha);
       $("<h3>").text(item.nome).appendTo($detalhes);
-      $("<p>").text(formatarPreco(preco)).appendTo($detalhes);
+      $("<p>").text(formatarPreco(preco) + " cada").appendTo($detalhes);
+      var $quantidade = $("<div>").addClass("item-carrinho__quantidade").appendTo($detalhes);
+      $("<button>").attr({
+        type: "button",
+        "data-indice": indice,
+        "aria-label": "Diminuir quantidade de " + item.nome,
+        disabled: item.quantidade <= 1
+      }).addClass("item-carrinho__alterar item-carrinho__diminuir").text("−").appendTo($quantidade);
+      $("<span>").attr("aria-label", "Quantidade: " + item.quantidade)
+        .text(item.quantidade).appendTo($quantidade);
+      $("<button>").attr({
+        type: "button",
+        "data-indice": indice,
+        "aria-label": "Aumentar quantidade de " + item.nome
+      }).addClass("item-carrinho__alterar item-carrinho__aumentar").text("+").appendTo($quantidade);
+      $("<strong>").addClass("item-carrinho__subtotal").text(formatarPreco(subtotal)).appendTo($detalhes);
       $("<button>").attr({
         type: "button",
         "data-indice": indice,
@@ -145,14 +181,27 @@ $(function () {
   $(document).on("click", ".adicionar-carrinho", function () {
     var $produto = $(this).closest(".produto");
     var $imagem = $produto.find(".produto__imagem img");
-    itensCarrinho.push({
+    var produto = {
       nome: $produto.find(".produto__info h3").text().trim(),
       preco: Number($produto.data("preco")),
       imagem: $imagem.attr("src")
+    };
+    var existente = itensCarrinho.find(function (item) {
+      return item.nome === produto.nome && item.preco === produto.preco && item.imagem === produto.imagem;
     });
+    if (existente) {
+      existente.quantidade++;
+    } else {
+      produto.quantidade = 1;
+      itensCarrinho.push(produto);
+    }
     if (!gravarCarrinho(itensCarrinho)) {
       window.alert("Não foi possível salvar o carrinho neste navegador.");
-      itensCarrinho.pop();
+      if (existente) {
+        existente.quantidade--;
+      } else {
+        itensCarrinho.pop();
+      }
       return;
     }
     atualizarContador(itensCarrinho);
@@ -165,11 +214,24 @@ $(function () {
     $(this).text("Adicionado ✓");
   });
 
-  $("#itens-carrinho").on("click", ".item-carrinho__remover", function () {
+  $("#itens-carrinho").on("click", ".item-carrinho__remover, .item-carrinho__diminuir, .item-carrinho__aumentar", function () {
     var indice = Number($(this).attr("data-indice"));
-    var removido = itensCarrinho.splice(indice, 1);
+    var item = itensCarrinho[indice];
+    var removido = null;
+    var quantidadeAnterior = item.quantidade;
+    if ($(this).hasClass("item-carrinho__remover")) {
+      removido = itensCarrinho.splice(indice, 1)[0];
+    } else if ($(this).hasClass("item-carrinho__diminuir")) {
+      item.quantidade--;
+    } else {
+      item.quantidade++;
+    }
     if (!gravarCarrinho(itensCarrinho)) {
-      itensCarrinho.splice(indice, 0, removido[0]);
+      if (removido) {
+        itensCarrinho.splice(indice, 0, removido);
+      } else {
+        item.quantidade = quantidadeAnterior;
+      }
       return;
     }
     atualizarContador(itensCarrinho);
@@ -281,8 +343,43 @@ $(function () {
     $("#confirmacao-checkout").prop("hidden", true).hide();
   });
 
+  function validarCEP(cep) {
+    return /^[0-9]{5}-?[0-9]{3}$/.test(cep.trim());
+  }
+
+  function validarCampoCheckout($campo) {
+    var valor = $campo.val();
+    var resultado;
+    if ($campo.attr("id") === "cep-checkout") {
+      resultado = validarCEP(valor) || "Informe um CEP completo com 8 dígitos.";
+    } else if ($campo.attr("id") === "cidade-entrega") {
+      resultado = valor.trim().length >= 2 || "Informe uma cidade com ao menos 2 caracteres.";
+    } else {
+      resultado = $campo[0].selectedIndex > 0 || "Selecione um estado.";
+    }
+    return marcarCampo($campo, resultado === true, resultado);
+  }
+
+  var $camposEntrega = $("#cep-checkout, #cidade-entrega, #estado-entrega");
+  $camposEntrega
+    .on("blur change input", function () {
+      validarCampoCheckout($(this));
+      $("#confirmacao-checkout").prop("hidden", true).hide();
+    })
+    .on("invalid", function () { validarCampoCheckout($(this)); });
+
   $("#form-checkout").on("submit", function (evento) {
     evento.preventDefault();
+    var tudoValido = true;
+    $camposEntrega.each(function () {
+      if (!validarCampoCheckout($(this))) { tudoValido = false; }
+    });
+    if (!tudoValido) {
+      $camposEntrega.filter(function () {
+        return $(this).closest(".campo").hasClass("erro");
+      }).first().trigger("focus");
+      return;
+    }
     var $cpf = $("#cpf-checkout");
     if (!validarCPF($cpf.val())) {
       $cpf[0].setCustomValidity("Informe um CPF válido.");

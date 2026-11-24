@@ -39,7 +39,7 @@ Projeto Final da Disciplina/
 
 | Requisito | Onde está | Status |
 |---|---|---|
-| Navegação principal e checkout | 7 páginas no menu principal e checkout acessível pelo carrinho | ✅ |
+| Navegação principal e checkout | 8 páginas: Início, Masculino, Acessórios, Calçados, Perfumes, Sobre, Contato e Checkout | ✅ |
 | 1 formulário com ao menos 5 elementos | `contato.html`: nome, e-mail, telefone, CPF, CEP, assunto (select), data, radio, checkbox, textarea, aceite — 11 campos | ✅ |
 | 1 galeria de fotos | `sobre.html#lookbook` (galeria em mosaico + lightbox) e vitrines de produtos | ✅ |
 | Menu responsivo | Menu "hambúrguer" no celular, horizontal a partir de 52em | ✅ |

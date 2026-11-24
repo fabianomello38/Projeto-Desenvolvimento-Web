@@ -58,7 +58,7 @@
       </div>
     </header>
 
-    <section class="secao">
+    <div class="secao">
       <div class="container checkout-grid">
         <section class="checkout-resumo" aria-labelledby="titulo-resumo">
           <h2 id="titulo-resumo">Seu carrinho</h2>
@@ -85,7 +85,7 @@
           <div class="linha">
             <div class="campo">
               <label for="endereco-entrega">Endereço</label>
-              <input type="text" id="endereco-entrega" name="endereco-entrega" autocomplete="street-address" placeholder="Rua e número" required>
+              <input type="text" id="endereco-entrega" name="endereco-entrega" autocomplete="address-line1" placeholder="Rua e número" required>
             </div>
             <div class="campo">
               <label for="complemento-entrega">Complemento</label>
@@ -94,7 +94,49 @@
           </div>
           <div class="campo">
             <label for="cep-checkout">CEP</label>
-            <input type="text" id="cep-checkout" name="cep" inputmode="numeric" autocomplete="postal-code" placeholder="00000-000" required>
+            <input type="text" id="cep-checkout" name="cep" inputmode="numeric" autocomplete="postal-code" placeholder="00000-000" pattern="[0-9]{5}-?[0-9]{3}" aria-describedby="erro-cep-checkout" required>
+            <small class="mensagem-erro" id="erro-cep-checkout" aria-live="polite"></small>
+          </div>
+          <div class="linha">
+            <div class="campo">
+              <label for="cidade-entrega">Cidade</label>
+              <input type="text" id="cidade-entrega" name="cidade" autocomplete="address-level2" aria-describedby="erro-cidade-entrega" required minlength="2">
+              <small class="mensagem-erro" id="erro-cidade-entrega" aria-live="polite"></small>
+            </div>
+            <div class="campo">
+              <label for="estado-entrega">Estado</label>
+              <select id="estado-entrega" name="estado" autocomplete="address-level1" aria-describedby="erro-estado-entrega" required>
+                <option value="">Selecione</option>
+                <option value="AC">Acre</option>
+                <option value="AL">Alagoas</option>
+                <option value="AP">Amapá</option>
+                <option value="AM">Amazonas</option>
+                <option value="BA">Bahia</option>
+                <option value="CE">Ceará</option>
+                <option value="DF">Distrito Federal</option>
+                <option value="ES">Espírito Santo</option>
+                <option value="GO">Goiás</option>
+                <option value="MA">Maranhão</option>
+                <option value="MT">Mato Grosso</option>
+                <option value="MS">Mato Grosso do Sul</option>
+                <option value="MG">Minas Gerais</option>
+                <option value="PA">Pará</option>
+                <option value="PB">Paraíba</option>
+                <option value="PR">Paraná</option>
+                <option value="PE">Pernambuco</option>
+                <option value="PI">Piauí</option>
+                <option value="RJ">Rio de Janeiro</option>
+                <option value="RN">Rio Grande do Norte</option>
+                <option value="RS">Rio Grande do Sul</option>
+                <option value="RO">Rondônia</option>
+                <option value="RR">Roraima</option>
+                <option value="SC">Santa Catarina</option>
+                <option value="SP">São Paulo</option>
+                <option value="SE">Sergipe</option>
+                <option value="TO">Tocantins</option>
+              </select>
+              <small class="mensagem-erro" id="erro-estado-entrega" aria-live="polite"></small>
+            </div>
           </div>
 
           <fieldset>
@@ -129,7 +171,7 @@
           <button class="botao" id="finalizar-compra" type="submit">Confirmar pedido</button>
         </form>
       </div>
-    </section>
+    </div>
   </main>
 
   <footer class="rodape">

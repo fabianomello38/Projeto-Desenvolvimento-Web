@@ -431,6 +431,10 @@ h3 { font-size: 1.15rem; }
 .item-carrinho img { width: 4.5rem; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--raio); }
 .item-carrinho__detalhes h3 { font-size: 1rem; }
 .item-carrinho__detalhes p { color: var(--cor-secundaria); font-weight: 600; }
+.item-carrinho__quantidade { display: flex; align-items: center; gap: 0.5rem; margin-block: 0.5rem; }
+.item-carrinho__alterar { width: 2rem; height: 2rem; border: 1px solid var(--cor-borda); border-radius: 0.25rem; background: var(--cor-superficie); cursor: pointer; }
+.item-carrinho__alterar:disabled { opacity: 0.5; cursor: not-allowed; }
+.item-carrinho__subtotal { display: block; }
 .item-carrinho__remover { border: 0; background: none; color: var(--cor-destaque-escura); text-decoration: underline; cursor: pointer; }
 .resumo-carrinho { padding-top: 1rem; }
 .resumo-carrinho p { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
